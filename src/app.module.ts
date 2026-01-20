@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { Product } from './products/product.entity';
+import { Category } from './categories/category.entity';
 
 @Module({
   imports: [
@@ -23,6 +25,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
+        entities: [Product, Category], //pasamos la ruta de las entidades
         autoLoadEntities: true,
         synchronize: false, // IMPORTANTE 👀 debe de estar en false para que no me cambie nada ni las tablas ni los datos
       }),
