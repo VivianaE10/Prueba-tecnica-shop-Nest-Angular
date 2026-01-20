@@ -1,4 +1,4 @@
-//crear los mappings de la entidad Products
+//crear la entidad para que tymeORM pueda mappear la tabla products
 
 import {
   Entity,
@@ -7,11 +7,11 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { Category } from '../categories/category.entity';
+import { Category } from '../../categories/entities/category.entity';
 
-@Entity('products')
+@Entity('products') //mapea la entidad Products con la tabla products
 export class Product {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn() // genera el id automaticamente y se autoincrementa
   id: number;
 
   @Column({ length: 100 })

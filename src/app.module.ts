@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Product } from './products/product.entity';
 import { Category } from './categories/category.entity';
+import { CategoriesModule } from './categories/categories.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -30,6 +32,10 @@ import { Category } from './categories/category.entity';
         synchronize: false, // IMPORTANTE 👀 debe de estar en false para que no me cambie nada ni las tablas ni los datos
       }),
     }),
+
+    CategoriesModule,
+
+    ProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

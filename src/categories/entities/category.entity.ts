@@ -1,7 +1,5 @@
 //crear la entidad para que tymeORM pueda mappear la tabla categories
 
-import { Product } from '../products/product.entity';
-
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -9,6 +7,7 @@ import {
   CreateDateColumn,
   OneToMany,
 } from 'typeorm';
+import { Product } from '../../products/entities/product.entity';
 
 @Entity('categories')
 export class Category {
@@ -24,6 +23,6 @@ export class Category {
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @OneToMany(() => Product, (product) => product.category)
+  @OneToMany(() => Product, (product) => product.category) //defino la relaciin uno a muchos y le digo que la relacion es con la entidad Product y que es atravs del atributo category
   products: Product[];
 }
