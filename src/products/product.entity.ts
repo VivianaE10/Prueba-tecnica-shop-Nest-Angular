@@ -7,7 +7,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { Category } from '../../categories/entities/category.entity';
+import { Category } from '../categories/category.entity';
 
 @Entity('products') //mapea la entidad Products con la tabla products
 export class Product {

@@ -7,7 +7,7 @@ import {
   CreateDateColumn,
   OneToMany,
 } from 'typeorm';
-import { Product } from '../../products/entities/product.entity';
+import { Product } from '../products/product.entity';
 
 @Entity('categories')
 export class Category {

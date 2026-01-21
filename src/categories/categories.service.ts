@@ -1,26 +1,47 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
+// import { UpdateCategoryDto } from './dto/update-category.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Category } from './category.entity';
+import { Repository } from 'typeorm';
 
+//voy a inyetrale el repositorio de la entidad Category
 @Injectable()
 export class CategoriesService {
+  constructor(
+    @InjectRepository(Category)
+    private categoryRepository: Repository<Category>,
+  ) {}
+
   create(createCategoryDto: CreateCategoryDto) {
-    return 'This action adds a new category';
+    const Category = this.categoryRepository.create(createCategoryDto);
+    return this.categoryRepository.save(Category); //guardo la nueva categoria en la base de datos
   }
 
   findAll() {
-    return `This action returns all categories`;
+    return this.categoryRepository.find(); //devuelve todas las categorias
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} category`;
+  async findByName(name: string) {
+    //metodo que busca categorias por nombre
+    return this.categoryRepository.find({
+      where: { name },
+    });
   }
 
-  update(id: number, updateCategoryDto: UpdateCategoryDto) {
-    return `This action updates a #${id} category`;
-  }
+  // eliminar una categoria por id, solo si el header admin es true
+  async remove(id: number, isAdmin: boolean): Promise<string> {
+    // Validate admin header
+    if (!isAdmin) {
+      return 'Unauthorized, admin header required';
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} category`;
+    const result = await this.categoryRepository.delete(id);
+
+    if (result.affected === 0) {
+      return 'Category not found';
+    }
+
+    return 'Category deleted successfully';
   }
 }
