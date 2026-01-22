@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 
@@ -17,7 +25,8 @@ export class ProductsController {
   }
 
   @Get(':id') // obtener un producto por id
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    // implementar los pipes para validar que es un número
     return this.productsService.findOne(+id);
   }
 
@@ -28,7 +37,8 @@ export class ProductsController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseIntPipe) id: number) {
+    //implementar pipe para validar número
     return this.productsService.remove(+id);
   }
 }

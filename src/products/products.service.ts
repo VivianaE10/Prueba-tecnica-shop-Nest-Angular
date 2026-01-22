@@ -34,15 +34,17 @@ export class ProductsService {
     return this.productRepository.save(product);
   }
 
-  // Obtener todos los productos con su categoría
+  // Obtener todos los productos con su categoría y estado
   async findAll(): Promise<Product[]> {
-    // Promise de un array de productos
-    return this.productRepository.find(); // eager:true trae la categoría automáticamente si la configuraste así
+    return this.productRepository.find({ relations: ['category'] }); // incluye la relación con categoría y si esta activo
   }
 
-  // Obtener producto por id y su categoría (activo o inactivo)
+  // Obtener producto por id y su categoría
   async findOne(id: number): Promise<Product> {
-    const product = await this.productRepository.findOne({ where: { id } });
+    const product = await this.productRepository.findOne({
+      where: { id, is_active: true }, //me filtra por el id y que esté activo o inactivo
+      relations: ['category'], // incluye la relación con categoría para devolverla también y mostarla en el get
+    });
     if (!product) {
       throw new NotFoundException(`Product with id ${id} not found`);
     }
@@ -53,6 +55,7 @@ export class ProductsService {
   async findByName(name: string): Promise<Product[]> {
     return this.productRepository.find({
       where: { name: ILike(`%${name}%`) },
+      relations: ['category'],
     });
   }
 
