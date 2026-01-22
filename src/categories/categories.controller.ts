@@ -43,8 +43,6 @@ export class CategoriesController {
     @Param('id', ParseIntPipe) id: number,
     @Headers('admin') admin: string, // headr es inforacion extra osea es el texto de admin
   ) {
-    console.log('ADMIN HEADER RECIBIDO:', admin);
-
     const isAdmin = admin === 'true'; // 👀convierto el string a booleano y si es true entonces se elimina si es false no se elimina
     return this.categoriesService.remove(id, isAdmin);
   }

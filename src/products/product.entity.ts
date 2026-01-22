@@ -27,9 +27,9 @@ export class Product {
   stock: number;
 
   @Column({ default: true })
-  isActive: boolean;
+  is_active: boolean;
 
   @ManyToOne(() => Category, (category) => category.products)
   @JoinColumn({ name: 'category_id' })
-  category: Category;
+  category: Category; // referencia la columna FK en la tabla
 }

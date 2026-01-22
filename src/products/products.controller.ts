@@ -1,15 +1,6 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -30,12 +21,13 @@ export class ProductsController {
     return this.productsService.findOne(+id);
   }
 
-  @Patch(':id') // acqtualizar un producto por id
-  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return this.productsService.update(+id, updateProductDto);
+  @Get('name/:name') // obtener producto por nombre
+  findByName(@Param('name') name: string) {
+    //findByName(name) sí recibe un parámetro
+    return this.productsService.findByName(name);
   }
 
-  @Delete(':id') // eliminar un producto por id
+  @Delete(':id')
   remove(@Param('id') id: string) {
     return this.productsService.remove(+id);
   }
