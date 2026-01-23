@@ -1,98 +1,141 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Prueba Técnica: Backend (NestJS) y Frontend (Angular)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Descripción General
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Este proyecto es el resultado de una prueba técnica que abarca el desarrollo de un backend con NestJS y un frontend con Angular, cumpliendo con los requisitos solicitados para la gestión de categorías y productos en una tienda.
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Índice
 
-## Project setup
+- [Requisitos de la prueba](#requisitos-de-la-prueba)
+- [Decisiones técnicas y consideraciones](#decisiones-técnicas-y-consideraciones)
+- [Backend (NestJS)](#backend-nestjs)
+- [Frontend (Angular)](#frontend-angular)
+- [Base de datos y relaciones](#base-de-datos-y-relaciones)
+- [Ejecución y pruebas](#ejecución-y-pruebas)
+- [Video explicativo](#video-explicativo)
+
+---
+
+## Requisitos de la prueba
+
+**Backend (NestJS):**
+
+- API REST sobre Node 24, TypeORM, código y comentario.
+- Servicios para categorías: crear, consultar por nombre, consultar todo, eliminar (con header admin:true).
+- Servicios para productos: crear, consultar por nombre, consultar por id, consultar todo, inactivar (no eliminar físico).
+- Relación: una categoría puede tener varios productos (OneToMany).
+- Uso de PIPES para validar IDs.
+- Archivo .sql con la estructura y datos de la base de datos.
+- Uso de variables de entorno (.env).
+
+**Frontend (Angular):**
+
+- Angular 19 o 20, código y comentarios.
+- Página de login ficticia (usuario, contraseña, admin).
+- Dashboard con navegación, menús y vistas independientes para categorías y productos.
+- Consumo de todos los servicios del backend.
+- Uso de modales para operaciones CRUD.
+- **Nota:** No se utilizó Tailwind por conflictos de dependencias. Se implementó Bootstrap para una mejor experiencia visual y compatibilidad.
+
+---
+
+## Decisiones técnicas y consideraciones
+
+Inicialmente intenté integrar **Tailwind CSS** ejecutando `npx tailwindcss init` para generar el archivo `tailwind.config.js` y así poder usar Tailwind en los estilos del proyecto. Mi objetivo era aprovechar las utilidades de Tailwind en Angular.
+
+Sin embargo, surgieron errores al correr `ng serve` porque Tailwind no estaba integrado correctamente con Angular o PostCSS. Realicé varios ajustes, asegurándome de que las directivas `@tailwind base;`, `@tailwind components;` y `@tailwind utilities;` estuvieran en `styles.css`, logrando que Angular compilara los estilos y mostrara los archivos iniciales.
+
+La dificultad principal fue la configuración de Tailwind con Angular usando npx, ya que requiere que PostCSS y Angular reconozcan los archivos de Tailwind. Por estos conflictos y para garantizar la compatibilidad y una mejor experiencia visual, decidí implementar **Bootstrap** en lugar de Tailwind CSS. Esto me permitió lograr una interfaz responsiva y sin conflictos.
+
+Utilicé **MySQL** como motor de base de datos.
+
+Documenté y estructuré el código, siguiendo buenas prácticas.
+
+Implementé iconos 👀 en las partes más importantes de la interfaz para resaltar funcionalidades clave.
+
+El login es ficticio.
+
+---
+
+## Backend (NestJS)
+
+- Estructura modular con controladores, servicios, DTOs, modulos y entidades para categorías y productos.
+- Uso de TypeORM para el mapeo de entidades y relaciones.
+- Validación de datos con Pipes y DTOs.
+- Servicio de eliminación de categorías protegido por header personalizado (`admin: true`).
+- Servicio de inactivación para productos (no se eliminan físicamente).
+- Variables de entorno para configuración sensible.
+- Archivo SQL en `/database/shop.sql` para la estructura y datos de la base de datos.
+
+---
+
+## Frontend (Angular)
+
+- Utilicé componentes standalone, sin app.module.ts (Angular moderno).
+- Implementé la navegación con Angular Router y protección de rutas según el estado admin.
+- Los formularios son reactivos y validan los datos antes de enviarlos al backend.
+- Consumo la API REST con HttpClient.
+- Para que el backend permitiera las solicitudes desde el frontend, configuré correctamente los CORS en el backend (NestJS).
+- La interfaz es responsiva y moderna gracias a Bootstrap.
+- Incluí iconos y mensajes claros para el usuario.
+
+---
+
+## Base de datos y relaciones
+
+- Utilicé una base de datos relacional (**MySQL**) llamada `shop`.
+- Se crearon dos tablas principales: `categories` y `products`.
+- La relación principal es **OneToMany**: una categoría puede tener varios productos.
+- Además, cada producto tiene una relación **ManyToOne** con la tabla de categorías (cada producto pertenece a una sola categoría).
+- Archivo SQL: [`/database/shop.sql`](database/shop.sql)
+
+### Diagrama de la base de datos
+
+![Diagrama de base de datos](./base_de_datos.png)
+
+> El diagrama muestra la relación 1 a N entre categorías y productos, así como las claves primarias y foráneas utilizadas en la estructura.
+
+---
+
+## Ejecución y pruebas
+
+### Backend
 
 ```bash
-$ npm install
+cd prueba
+npm install
+npm run start:dev
 ```
 
-## Compile and run the project
+### Frontend
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+cd shopdashboard
+npm install
+ng serve
 ```
 
-## Run tests
+---
 
-```bash
-# unit tests
-$ npm run test
+## Video explicativo
 
-# e2e tests
-$ npm run test:e2e
+Incluye un video corto donde se explica la construcción del código y el flujo de datos entre backend y frontend.
 
-# test coverage
-$ npm run test:cov
-```
+---
 
-## Deployment
+## Descargar informe Word
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+[Descargar informe Word aquí](#) <!-- Reemplaza # por el enlace real cuando lo tengas -->
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+> **Nota:** El archivo Word contiene capturas de pantalla y el proceso detallado de la mayoría de los pasos realizados durante la prueba técnica, para facilitar la comprensión y verificación visual del desarrollo.
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+---
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Notas finales
 
-## Resources
+- No se utilizó Tailwind por conflictos de dependencias, se optó por Bootstrap para garantizar compatibilidad y mejor experiencia visual.
+- El proyecto cumple con todos los requisitos técnicos y funcionales solicitados en la prueba.
 
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+---
