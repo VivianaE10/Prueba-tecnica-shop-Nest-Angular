@@ -1,0 +1,74 @@
+<!-- Navbar superior para navegación -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+  <div class="container-fluid">
+    <button class="navbar-brand btn btn-link text-white p-0" (click)="goToDashboard()">
+      Dashboard
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <button class="nav-link btn btn-link text-white" (click)="goToLogin()">Login</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link btn btn-link text-white" (click)="goToDashboard()">
+            Dashboard
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Formulario de categoría -->
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-7 col-lg-6">
+      <div
+        class="card shadow border-0"
+        style="background: linear-gradient(120deg, #e3f0ff 0%, #f8fafc 100%)"
+      >
+        <div class="card-body p-4">
+          <div class="text-center mb-4">
+            <i class="bi bi-tags-fill text-info" style="font-size: 2.5rem"></i>
+            <h2 class="fw-bold text-primary mt-2 mb-0">New Category</h2>
+            <p class="text-secondary mb-0">Add a new category to your shop</p>
+          </div>
+          <form (ngSubmit)="onSubmit()" #categoryForm="ngForm">
+            <div class="mb-4">
+              <label for="name" class="form-label fw-semibold"
+                >Name <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-control form-control-lg"
+                placeholder="Category name"
+                required
+                [(ngModel)]="name"
+              />
+            </div>
+            <div class="mb-4">
+              <label for="description" class="form-label fw-semibold">Description</label>
+              <textarea
+                id="description"
+                name="description"
+                class="form-control form-control-lg"
+                rows="3"
+                placeholder="Category description"
+                [(ngModel)]="description"
+              ></textarea>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-info btn-lg fw-bold">
+                <i class="bi bi-plus-circle me-2"></i>Save Category
+              </button>
+            </div>
+            <div *ngIf="success" class="alert alert-success mt-3">Category saved successfully!</div>
+            <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
