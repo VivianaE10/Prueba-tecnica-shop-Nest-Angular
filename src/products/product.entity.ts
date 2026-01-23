@@ -27,9 +27,12 @@ export class Product {
   stock: number;
 
   @Column({ default: true })
-  is_active: boolean;
+  is_active: boolean; // para no borrar productos, solo desactivarlos
 
   @ManyToOne(() => Category, (category) => category.products)
   @JoinColumn({ name: 'category_id' })
   category: Category; // referencia la columna FK en la tabla
+
+  @Column()
+  category_id: number; // IMportante 👀columna FK para la relación con Category
 }

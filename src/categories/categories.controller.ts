@@ -1,4 +1,4 @@
-// //implemear el endpoint para las categorias
+// implemear el endpoint para las categorias
 
 import {
   Controller,

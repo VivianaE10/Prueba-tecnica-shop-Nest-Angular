@@ -6,6 +6,9 @@ Este proyecto es el resultado de una prueba técnica que abarca el desarrollo de
 
 ---
 
+> **Nota:** El video explicativo no se alcanzó a realizar por motivos de tiempo.
+> En caso de ser requerido, puedo realizar una demostración en tiempo real del funcionamiento completo del proyecto desde mi equipo.
+
 ## Índice
 
 - [Requisitos de la prueba](#requisitos-de-la-prueba)
@@ -119,23 +122,14 @@ ng serve
 
 ---
 
-## Video explicativo
-
-Incluye un video corto donde se explica la construcción del código y el flujo de datos entre backend y frontend.
-
 ---
 
 ## Descargar informe Word
 
-[Descargar informe Word aquí](#) <!-- Reemplaza # por el enlace real cuando lo tengas -->
+[Descargar informe Word aquí](https://docs.google.com/document/d/16fwUNT9svhssoFMRjP2FpgL1LSticTkhgrrVcVVxtvQ/edit?usp=sharing) <!-- Reemplaza # por el enlace real cuando lo tengas -->
 
 > **Nota:** El archivo Word contiene capturas de pantalla y el proceso detallado de la mayoría de los pasos realizados durante la prueba técnica, para facilitar la comprensión y verificación visual del desarrollo.
 
 ---
-
-## Notas finales
-
-- No se utilizó Tailwind por conflictos de dependencias, se optó por Bootstrap para garantizar compatibilidad y mejor experiencia visual.
-- El proyecto cumple con todos los requisitos técnicos y funcionales solicitados en la prueba.
 
 ---

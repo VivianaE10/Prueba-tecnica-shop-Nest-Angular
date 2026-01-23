@@ -55,7 +55,7 @@ export class ProductsService {
   async findByName(name: string): Promise<Product[]> {
     return this.productRepository.find({
       where: { name: ILike(`%${name}%`) },
-      relations: ['category'],
+      relations: ['category'], // incluye la relación con categoría para devolverla también
     });
   }
 
