@@ -1,3 +1,4 @@
+//este servicio se encarga de manejar las operaciones relacionadas con los productos
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

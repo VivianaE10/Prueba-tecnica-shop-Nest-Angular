@@ -1,3 +1,4 @@
+//el servico de categorias para crear categorias en el backend
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
