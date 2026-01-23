@@ -12,4 +12,8 @@ export class Dashboard {
   goToCategories() {
     this.router.navigate(['/categories']);
   }
+
+  goToProducts() {
+    this.router.navigate(['/products']);
+  }
 }
