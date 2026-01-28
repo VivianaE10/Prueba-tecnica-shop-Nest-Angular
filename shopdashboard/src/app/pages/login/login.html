@@ -1,7 +1,9 @@
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
   <div class="card shadow p-4" style="max-width: 400px; width: 100%">
-    <form>
+    <form autocomplete="off">
       <h2 class="mb-4 text-center">Login</h2>
+
+      <div *ngIf="error" class="alert alert-danger py-2">{{ error }}</div>
 
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
@@ -11,9 +13,16 @@
           type="text"
           class="form-control"
           placeholder="Enter your username"
+          [(ngModel)]="username"
+          (blur)="usernameTouched = true"
+          [ngClass]="{ 'is-invalid': usernameTouched && !username }"
+          required
         />
+        <div *ngIf="usernameTouched && !username" class="invalid-feedback d-block">
+          Coloca el nombre de usuario.
+        </div>
       </div>
-      <!-- Password field -->
+
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
         <input
@@ -22,12 +31,29 @@
           type="password"
           class="form-control"
           placeholder="Enter your password"
+          [(ngModel)]="password"
+          (blur)="passwordTouched = true"
+          [ngClass]="{ 'is-invalid': passwordTouched && !password }"
+          required
         />
+        <div *ngIf="passwordTouched && !password" class="invalid-feedback d-block">
+          Coloca la contraseña.
+        </div>
       </div>
-      <!-- Admin checkbox -->
+
       <div class="form-check mb-3">
-        <input id="admin" name="admin" type="checkbox" class="form-check-input" />
+        <input
+          id="admin"
+          name="admin"
+          type="checkbox"
+          class="form-check-input"
+          [(ngModel)]="admin"
+          (blur)="adminTouched = true"
+        />
         <label for="admin" class="form-check-label">Admin</label>
+        <div *ngIf="adminTouched && !admin" class="invalid-feedback d-block">
+          Debes marcar la casilla Admin.
+        </div>
       </div>
 
       <button type="button" class="btn btn-primary w-100" (click)="onLogin()">Login</button>
