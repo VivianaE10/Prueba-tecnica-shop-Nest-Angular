@@ -1,0 +1,26 @@
+/* Estilos extraídos de los archivos HTML para evitar estilos en línea */
+
+.card-max-width {
+  max-width: 400px;
+  width: 100%;
+}
+
+.min-vh-70 {
+  min-height: 70vh;
+}
+
+.bg-gradient-blue {
+  background: linear-gradient(120deg, #e3f0ff 0%, #f8fafc 100%);
+}
+
+.bg-gradient-blue-horizontal {
+  background: linear-gradient(90deg, #f8fafc 0%, #e3f0ff 100%);
+}
+
+.icon-large {
+  font-size: 2.5rem;
+}
+
+.flex-display {
+  display: flex;
+}

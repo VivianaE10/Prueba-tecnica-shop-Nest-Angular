@@ -40,10 +40,10 @@ export class Categories {
   }
 
   goToDashboard() {
-    this.router.navigate(['/dashboard']);
+    void this.router.navigate(['/dashboard']);
   }
 
   goToLogin() {
-    this.router.navigate(['/login']);
+    void this.router.navigate(['/login']);
   }
 }

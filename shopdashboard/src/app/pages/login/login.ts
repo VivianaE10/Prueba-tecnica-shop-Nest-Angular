@@ -13,6 +13,7 @@ import { Router } from '@angular/router'; // Importa el Router para la navegaci√
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './login.html',
+  styleUrls: ['./login.css'],
 })
 export class Login {
   username = '';
@@ -35,6 +36,6 @@ export class Login {
       return;
     }
     this.error = '';
-    this.router.navigate(['/dashboard']);
+    void this.router.navigate(['/dashboard']);
   }
 }

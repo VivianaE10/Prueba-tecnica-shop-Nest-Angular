@@ -1,3 +1,4 @@
+//componente la loguca del dashboard que me lleva a las categorias y productos
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -5,15 +6,16 @@ import { Router } from '@angular/router';
   selector: 'app-dashboard', // Selector del componente para el dashboard y me lleva a la dashboard
   imports: [],
   templateUrl: './dashboard.html', // Ruta al archivo HTML del dashboard
+  styleUrls: ['./dashboard.css'],
 })
 export class Dashboard {
   constructor(private router: Router) {}
 
   goToCategories() {
-    this.router.navigate(['/categories']);
+    void this.router.navigate(['/categories']);
   }
 
   goToProducts() {
-    this.router.navigate(['/products']);
+    void this.router.navigate(['/products']);
   }
 }

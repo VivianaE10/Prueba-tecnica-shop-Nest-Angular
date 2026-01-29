@@ -1,0 +1,40 @@
+.navbar {
+  border-radius: 0.7rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.navbar-nav .nav-link {
+  font-size: 1.1rem;
+  margin-right: 1rem;
+  transition: color 0.2s;
+}
+
+.navbar-nav .nav-link.active, .navbar-nav .nav-link:hover {
+  color: #ffd700 !important;
+  background: rgba(255,255,255,0.08);
+  border-radius: 0.5rem;
+}
+
+.navbar-text {
+  font-size: 1.1rem;
+  margin-left: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 991px) {
+  .navbar-nav .nav-link {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+  .navbar-text {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}
