@@ -27,7 +27,8 @@ h2 {
   font-size: 2.2rem;
 }
 
-.form-control, .btn {
+.form-control,
+.btn {
   font-size: 1.1rem;
   min-height: 2.5rem;
 }

@@ -1,4 +1,4 @@
-// ...existing code...
+//este componente muestra la lista de productos y permite eliminar productos
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -25,9 +25,9 @@ interface Product {
   templateUrl: './products-list.html',
 })
 export class ProductsList implements OnInit, OnDestroy {
-    goToEdit(id: number) {
-      void this.router.navigate([`/products/edit/${id}`]);
-    }
+  goToEdit(id: number) {
+    void this.router.navigate([`/products/edit/${id}`]);
+  }
   products: Product[] = [];
   loading = false;
   error = '';

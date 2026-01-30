@@ -1,62 +1,71 @@
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
-  <div class="card shadow p-4 card-max-width">
-    <form autocomplete="off">
-      <h2 class="mb-4 text-center">Login</h2>
+  <div class="w-100" style="max-width: 480px">
+    <!-- Barra visual superior -->
+    <div
+      class="bg-primary text-white rounded-top py-3 px-4 d-flex align-items-center shadow-sm"
+      style="min-height: 60px"
+    >
+      <span class="fw-bold fs-4 mx-auto">Shop Dashboard</span>
+    </div>
+    <div class="card shadow p-4 card-max-width rounded-top-0">
+      <form autocomplete="off">
+        <h2 class="mb-4 text-center">Login</h2>
 
-      <div *ngIf="error" class="alert alert-danger py-2">{{ error }}</div>
+        <div *ngIf="error" class="alert alert-danger py-2">{{ error }}</div>
 
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input
-          id="username"
-          name="username"
-          type="text"
-          class="form-control"
-          placeholder="Enter your username"
-          [(ngModel)]="username"
-          (blur)="usernameTouched = true"
-          [ngClass]="{ 'is-invalid': usernameTouched && !username }"
-          required
-        />
-        <div *ngIf="usernameTouched && !username" class="invalid-feedback d-block">
-          Coloca el nombre de usuario.
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            class="form-control"
+            placeholder="username"
+            [(ngModel)]="username"
+            (blur)="usernameTouched = true"
+            [ngClass]="{ 'is-invalid': usernameTouched && !username }"
+            required
+          />
+          <div *ngIf="usernameTouched && !username" class="invalid-feedback d-block">
+            Coloca el nombre de usuario.
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          class="form-control"
-          placeholder="Enter your password"
-          [(ngModel)]="password"
-          (blur)="passwordTouched = true"
-          [ngClass]="{ 'is-invalid': passwordTouched && !password }"
-          required
-        />
-        <div *ngIf="passwordTouched && !password" class="invalid-feedback d-block">
-          Coloca la contraseña.
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            class="form-control"
+            placeholder="password"
+            [(ngModel)]="password"
+            (blur)="passwordTouched = true"
+            [ngClass]="{ 'is-invalid': passwordTouched && !password }"
+            required
+          />
+          <div *ngIf="passwordTouched && !password" class="invalid-feedback d-block">
+            Coloca la contraseña.
+          </div>
         </div>
-      </div>
 
-      <div class="form-check mb-3">
-        <input
-          id="admin"
-          name="admin"
-          type="checkbox"
-          class="form-check-input"
-          [(ngModel)]="admin"
-          (blur)="adminTouched = true"
-        />
-        <label for="admin" class="form-check-label">Admin</label>
-        <div *ngIf="adminTouched && !admin" class="invalid-feedback d-block">
-          Debes marcar la casilla Admin.
+        <div class="form-check mb-3">
+          <input
+            id="admin"
+            name="admin"
+            type="checkbox"
+            class="form-check-input"
+            [(ngModel)]="admin"
+            (blur)="adminTouched = true"
+          />
+          <label for="admin" class="form-check-label">Admin</label>
+          <div *ngIf="adminTouched && !admin" class="invalid-feedback d-block">
+            Debes marcar la casilla Admin.
+          </div>
         </div>
-      </div>
 
-      <button type="button" class="btn btn-primary w-100" (click)="onLogin()">Login</button>
-    </form>
+        <button type="button" class="btn btn-primary w-100" (click)="onLogin()">Login</button>
+      </form>
+    </div>
   </div>
 </div>

@@ -23,7 +23,7 @@ export class ProductsService {
       where: { id: category_id },
     });
     if (!category) {
-      throw new NotFoundException(`Category with id ${category_id} not found`);
+      throw new NotFoundException(`hola viviana ${category_id} not found`);
     }
 
     const product = this.productRepository.create({

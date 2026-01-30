@@ -7,7 +7,6 @@
   </div>
 </nav>
 <div class="container py-5">
-  <!-- Método para volver al dashboard -->
   <div class="row justify-content-center align-items-center min-vh-70">
     <div class="col-12">
       <div class="card shadow border-0 w-100">
@@ -23,7 +22,10 @@
               <span class="visually-hidden">Cargando...</span>
             </div>
           </div>
-          <table *ngIf="!loading && products && products.length > 0" class="table table-hover align-middle">
+          <table
+            *ngIf="!loading && products && products.length > 0"
+            class="table table-hover align-middle"
+          >
             <thead class="table-light">
               <tr>
                 <th>ID</th>

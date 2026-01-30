@@ -1,3 +1,4 @@
+<!-- Componente de productos con formulario de creación/edición y navegación al dashboard -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow mb-4">
   <div class="container-fluid">
     <button class="navbar-brand btn btn-link text-white p-0 fw-bold" (click)="goToDashboard()">
@@ -18,11 +19,18 @@
               {{ editId ? 'Editar Producto' : 'Nuevo Producto' }}
             </h2>
             <p class="text-secondary mb-0">
-              {{ editId ? 'Modifica los datos del producto seleccionado' : 'Agrega un nuevo producto a tu tienda' }}
+              {{
+                editId
+                  ? 'Modifica los datos del producto seleccionado'
+                  : 'Agrega un nuevo producto a tu tienda'
+              }}
             </p>
             <div *ngIf="editId" class="alert alert-warning mt-3 py-2 px-3">
               <i class="bi bi-pencil-square me-1"></i>
-              <span>Estás editando el producto <b>#{{ editId }}</b>. Haz clic en "Cancelar edición" para volver a crear uno nuevo.</span>
+              <span
+                >Estás editando el producto <b>#{{ editId }}</b
+                >. Haz clic en "Cancelar edición" para volver a crear uno nuevo.</span
+              >
             </div>
           </div>
           <form (ngSubmit)="onSubmit()" #productForm="ngForm">
@@ -129,6 +137,5 @@
         </div>
       </div>
     </div>
-    <!-- Eliminado el contenedor de la lista de productos -->
   </div>
 </div>

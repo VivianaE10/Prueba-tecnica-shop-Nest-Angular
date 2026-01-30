@@ -8,4 +8,4 @@ async function bootstrap() {
   app.enableCors(); //Importante 👀habilita CORS para permitir solicitudes desde el frontend Angular
   await app.listen(process.env.PORT ?? 3000);
 }
-bootstrap();
+bootstrap().catch((err) => console.error(err));

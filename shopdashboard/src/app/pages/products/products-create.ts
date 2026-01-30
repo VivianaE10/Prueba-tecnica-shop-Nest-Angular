@@ -1,3 +1,4 @@
+//este componente permite crear nuevos productos
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
